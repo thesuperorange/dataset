@@ -1,0 +1,10 @@
+people = read.df("dataset/people.json","json")
+people_csv = read.df("dataset/people.csv","csv",sep=";", header=T,  inferSchema = "true")
+write.df(people,path="people.parquet", source = "parquet", mode="overwrite")
+collect(sum(people$age))
+sum =select(people,sum(people$age))
+collect(sum)
+
+group_major = count(groupBy(credit,credit$Major))
+collect(arrange(group_major,desc(group_major$count)))
+filter(credit,credit$GPA>3)
