@@ -5,6 +5,7 @@ collect(sum(people$age))
 sum =select(people,sum(people$age))
 collect(sum)
 
+credit = read.df("dataset/Log_reg_credit.csv","csv", header=T, inferSchema = T)
 group_major = count(groupBy(credit,credit$Major))
 collect(arrange(group_major,desc(group_major$count)))
 filter(credit,credit$GPA>3)
