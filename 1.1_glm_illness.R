@@ -23,8 +23,8 @@ summary(GLM3)
 ill_pred2 = predict(GLM3,illness_test)
 head(ill_pred2)
 
-y = illness_df$satisfy
-y_avg <- collect(agg(illness_df, y_avg = mean(y)))$y_avg
+y = illness_test$satisfy
+y_avg <- collect(agg(illness_test, y_avg = mean(y)))$y_avg
 z=ill_pred2$prediction
 df <- transform(ill_pred2,sq_res = (y - z)^2, sq_tot = (y - y_avg)^2, res = y - z)
 head(df)
